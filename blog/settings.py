@@ -145,6 +145,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
 #VENV_PATH = os.path.dirname(BASE_DIR)
 #STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
 #MEDIA_ROOT = os.path.join(BASE_DIR, 'static_cdn', 'media_root')
