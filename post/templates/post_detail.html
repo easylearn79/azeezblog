@@ -1,0 +1,93 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %}
+{% block content %}
+
+<style>
+    .content {
+        max-width: 700px;
+        margin: 0 auto;
+        float: none;
+    }
+</style>
+
+<div class="container">
+  <div class="row">
+    <div class="content col-md-8 mb-4  mt-3 left  top" style="margin-top: 25px;margin-bottom: 25px; padding-top: 25px; padding-bottom: 25px;">
+        <div class="card mb-4 bg-green "><h1 style="color:black; font-size: 25px;text-align: center; margin-top: 25px; margin-bottom: 25px;">{% block title %} {{ post.title }} {% endblock title %}</h1></div>
+        <p class="card-text ">{{ post.content | safe }}</p>
+    </div>
+    <div class="content col-md-8 col-sm-4 col-xs-* card mb-4  mt-3 bg-white">
+      <!-- comments -->
+      {% with comments.count as total_comments %}
+      <h2>{{ total_comments }} comments</h2>
+  
+      <p>
+          {% endwith %} {% for comment in comments %}
+      </p>
+      {% endfor %} {% load mptt_tags %}
+  
+      <div>
+          {% recursetree comments %}
+          <div id="{{ node.id }}" class="comments" style='padding: 10px;'>
+              <p class="font-weight-bold">
+                  {{ node.name }}
+                  <span class=" text-muted font-weight-normal text-dark">
+                      {{ node.publish }}
+                  </span>
+              </p>
+              {{ node.content | linebreaks}}
+              {% if node.level < 3 %}
+              <button class="button" onclick="myFunction({{ node.id }})">Reply to </button>
+              {% endif %}
+          </div>
+          {% if not node.is_leaf_node %}
+          <div class="children pl-2 pl-md-5">
+              {{ children }}
+          </div>
+          {% endif %}
+          {% endrecursetree %}
+      </div>
+  </div>
+  <div class=" content col-md-8 col-sm-4 col-xs-* card mb-4  mt-3 ">
+      <div class="content card-body">
+          <h3>Leave a comment</h3>
+          <form method="post" style="margin-top: 1.3em;">
+              {{ comment_form | crispy }} {% csrf_token %}
+              <button type="Post Comment" class="btn btn-primary  btn-md">Post Comment</button>
+          </form>
+      </div>
+  </div>
+    
+    
+  </div>
+</div>
+<script>
+  function formExit() {
+      document.getElementById("newForm").remove();
+  }
+
+  function myFunction(id) {
+      if (document.contains(document.getElementById("newForm"))) {
+          document.getElementById("newForm").remove();
+      }
+
+      var d1 = document.getElementById(id);
+      d1.insertAdjacentHTML('afterend',
+          '<form id="newForm" class="form-insert py-2" method="post"> \
+              <div class="d-flex justify-content-between"><h2>Reply:</h2><div><button type="button" class="btn btn-outline-secondary" onclick="formExit()"">Close</button></div></div> \
+              <label for="id_name">Name:</label> \
+              <input type="text" name="name" class="col-sm-12" maxlength="50" required="" id="id_name">\
+              <select name="parent" class="d-none" id="id_parentt"> \
+              <option value="' + id + '" selected="' + id + '"></option> \
+              </select> \
+              <label for="id_content">Content:</label> \
+              <textarea name="content" cols="40" rows="5" class="form-control" required id="id_content"></textarea> \
+              {% csrf_token %} \
+              <button type="Post Comment" class="btn btn-primary btn-md btn-block">Post Comment</button> \
+            </form>');
+
+      //document.querySelector('#id_parentt [value="' + id + '"]').selected = true;
+  }
+
+  $('#myForm').trigger("reset");
+</script>
+{% endblock content %}

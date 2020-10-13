@@ -1,0 +1,46 @@
+{% extends 'base.html'%}
+
+{% load static %}
+{% load hitcount_tags %}
+{% block content%}
+
+
+<style>
+    .content {
+        max-width: 800px;
+        margin: 0 auto;
+        float: none;
+        
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="content col-md-8 mb-4" style="padding-top: 25px; padding-bottom:30px;">
+            <div class="card mb-4 bg-green "><h1 style="color:black; font-size: 25px;text-align: center; margin-top: 25px; margin-bottom: 25px;">{% block title %} {{ course.title }} {% endblock title %}</h1></div>
+            <p class="card-text ">{{ course.content | safe }}</p>
+            <p>Views: {% get_hit_count for course %}</p>  
+
+            <div id="disqus_thread" style="padding-top: 45px;"></div>
+            <script>
+
+            /**
+            *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+            *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+            var disqus_config = function () {
+            this.page.url = '{{django.get_absolute_url}}';  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = '{{django_id}}'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            };
+
+            (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://learnwell-me.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+            })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>   
+        </div>
+    </div>
+</div>   
+{% endblock %}

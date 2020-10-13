@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+
+<div class="album py-5">
+  <div class="container">
+    <div class="row infinite-container">
+      {% for django in courses %}
+      <div class="col-lg-4 infinite-item">
+        <div class="card col-md-12 shadow-sm">
+          <div class="card-body">
+            <div class="display-4" style="font-size: 30px"><a href="{{django.get_absolute_url}}">
+              <h1 style="color: black; font-size:medium">{{django.title}}</h1>
+            </a></div>
+            <img src="{{ django.image_url }}" class="img-thumbnail" alt="">
+            {% for tag in django.tags.all %}
+            <a href="{% url 'tagged' tag.slug %}" class="mr-1 badge badge-info">#{{ tag }}</a>
+            {% endfor %}
+            <p>{{django.overview|truncatechars:50}}</p>
+            
+            <button type="button" class="p-2 border bg-info"><a href="{{django.get_absolute_url}}" style="color: black;">Continue
+                Reading</a></button>
+          </div>
+        </div>
+      </div>
+      {%endfor%}
+      {% if page_obj.has_next %}
+      <a class="infinite-more-link" href="?page={{ page_obj.next_page_number }}"></a>
+      {% endif %}
+      <div class="d-flex justify-content-center" style="display:none;">
+        <div class="spinner-border" role="status">
+         <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/static/js/jquery-2.2.4.min.js"></script>
+<script src="/static/js/jquery.waypoints.min.js"></script>
+<script src="/static/js/infinite.min.js"></script>
+
+<script>
+    var infinite = new Waypoint.Infinite({
+        element: $('.infinite-container')[0],
+        handler: function(direction) {
+        
+    },
+    offset: 'bottom-in-view',
+    onBeforePageLoad: function () {
+    $('.spinner-border').show();
+    },
+    onAfterPageLoad: function () {
+    $('.spinner-border').hide();
+    }
+    
+        
+    });
+
+</script>
+{% endblock content %}

@@ -1,0 +1,122 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+
+<style>
+    h1 {
+        color:black;
+        font-size: 20px;
+        font-weight: bold;
+    }
+</style>
+
+
+<div class="container">
+    <div class="row">
+        <!-- Latest Posts -->
+        <main class="posts-listing col-lg-8">
+            <div class="container">
+                <div class="row">
+                    <!-- post -->
+                    {% for post in posts %}
+                    <div class="post col-xl-6">
+                        <div class="post-thumbnail"><a href="{{ post.get_absolute_url }}"><img
+                                src="{{ post.image_url }}" alt="..."
+                                class="img-fluid"></a></div>
+                        <div class="post-details">
+                            <div class="post-meta d-flex justify-content-between">
+                                <div class="date meta-last">{{post.publish}}</div>
+                            </div>
+                            <a href="{{ post.get_absolute_url }}">
+                            <h1>{{post.title}}</h1></a>
+                            {% for tag in post.tags.all %}
+                            <a href="{% url 'tagged' tag.slug %}" class="mr-1 badge badge-info">#{{ tag }}</a>
+                            {% endfor %}
+                            <p class="text-muted">{{ post.overview|truncatechars:267 }}</p>
+                            <footer class="post-footer d-flex align-items-center"><a href="#"
+                                                                                     class="author d-flex align-items-center flex-wrap">
+                                <div class="avatar"><img src="{{ post.author.profile_picture }}" alt="..."
+                                                         class="img-fluid"></div>
+                                <div class="title"><span>{{ post.author.user.username }}</span></div>
+                            </a>
+                                <div class="date"><i class="icon-clock"></i>{{ post.publish }}</div>
+                                <div class="comments meta-last"><i class="icon-comment"></i>{{ post.comment_count }}
+                                </div>
+                            </footer>
+                            
+                        </div>
+                    </div>
+                    {%endfor%}
+                </div>
+                <!-- Pagination -->
+                <div class="row">
+                    <div class="col text-center">
+                        {% if is_paginated %}
+                        {% if page_obj.has_previous %}
+                        <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+                        <a class="btn btn-outline-info mb-4"
+                           href="?page={{page_obj.previous_page_numbber }}">Previous</a>
+                        {%endif%}
+
+                        {% for num in page_obj.paginator.page_range %}
+                        {% if page_obj.number == num %}
+                        <a class="btn btn-info mb-4" href="?page={{num}}">{{num}}</a>
+                        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3'%}
+                        <a class="btn btn-outline-info mb-4" href="?page={{num}}">{{num}}</a>
+                        {%endif%}
+                        {%endfor%}
+
+                        {% if page_obj.has_next%}
+                        <a class="btn btn-outline-info mb-4" href="?page={{page_obj.next_page_number}}">Next</a>
+                        <a class="btn btn-outline-info mb-4" href="?page={{page_obj.paginator.num_pages }}">Last</a>
+
+                        {%endif%}
+
+
+                        {%endif%}
+                    </div>
+                </div>
+            </div>
+        </main>
+        <aside class="col-lg-4">
+            <!-- Widget [Search Bar Widget]-->
+            <div class="widget search">
+                <header>
+                    <h3 class="h6">Search the blog</h3>
+                </header>
+                <form action="{% url 'post_search' %}" class="search-form">
+                    <div class="form-group">
+                        <input type="search" name="q" id="search" placeholder="What are you looking for?">
+                        <button type="submit" class="submit"><i class="icon-search"></i></button>
+                    </div>
+                </form>
+            </div>
+            <!-- Widget [Latest Posts Widget]        -->
+            <div class="widget latest-posts">
+                <header>
+                    <h4 class="h6">Latest Posts</h4>
+                </header>
+                <div class="blog-posts">
+                    {% for post in most_recent %}
+                    <a href="{{ post.get_absolute_url }}">
+                        <div class="item d-flex align-items-center">
+                            <div class="image"><img src="{{ post.image_url }}" alt="..." class="img-fluid"></div>
+                            <div class="title"><strong><a href="{{ post.get_absolute_url }}">{{post.title}}</a></strong>
+                                <div class="d-flex align-items-center">
+                                    <div class="comments"><i class="icon-comment"></i>{{ post.comment_count }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    {%endfor%}
+                </div>
+
+            </div>
+        </aside>
+    </div>
+</div>
+<!-- Page Footer-->
+
+<!-- JavaScript files-->
+
+{% endblock %}
