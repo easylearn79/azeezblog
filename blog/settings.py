@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'hitcount',
     #'django.contrib.sites',
+    'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'whitenoise.runserver_nostatic', 

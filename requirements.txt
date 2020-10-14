@@ -50,3 +50,4 @@ virtualenv==20.0.31
 importlib-metadata==1.7.0
 importlib-resources==3.0.0
 whitenoise
+django-grappelli 2.14.2

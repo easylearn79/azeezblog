@@ -29,6 +29,7 @@ sitemaps = {
      "courses":CourseSitemap
 }
 urlpatterns = [
+    path('grappelli/', include('grappelli.urls')), # grappelli URLS
     path('admin/', admin.site.urls),
     path('tinymce/', include('tinymce.urls')),
     path('', PostListView.as_view(), name='blog'),
