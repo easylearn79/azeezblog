@@ -10,7 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
-import django_heroku
 import dj_database_url 
 import os
 
@@ -187,4 +186,3 @@ TINYMCE_DEFAULT_CONFIG = {
     'statusbar': True,
 }
 
-django_heroku.settings(locals())
