@@ -9,8 +9,6 @@
         font-weight: bold;
     }
 </style>
-
-
 <div class="container">
     <div class="row">
         <!-- Latest Posts -->
@@ -33,15 +31,12 @@
                             <a href="{% url 'tagged' tag.slug %}" class="mr-1 badge badge-info">#{{ tag }}</a>
                             {% endfor %}
                             <p class="text-muted">{{ post.overview|truncatechars:267 }}</p>
-                            <footer class="post-footer d-flex align-items-center"><a href="#"
-                                                                                     class="author d-flex align-items-center flex-wrap">
-                                <div class="avatar"><img src="{{ post.author.profile_picture }}" alt="..."
-                                                         class="img-fluid"></div>
+                            <footer class="post-footer d-flex align-items-center"><a href="#" class="author d-flex align-items-center flex-wrap">
+                                <div class="avatar"><img src="{{ post.author.profile_picture }}" alt="..."class="img-fluid"></div>
                                 <div class="title"><span>{{ post.author.user.username }}</span></div>
                             </a>
-                                <div class="date"><i class="icon-clock"></i>{{ post.publish }}</div>
-                                <div class="comments meta-last"><i class="icon-comment"></i>{{ post.comment_count }}
-                                </div>
+                            <div class="date"><i class="icon-clock"></i>{{ post.publish }}</div>
+                            <div class="comments meta-last"><i class="icon-comment"></i>{{ post.comment_count }}</div>
                             </footer>
                             
                         </div>
