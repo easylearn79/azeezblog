@@ -68,10 +68,6 @@ MIDDLEWARE = [
 ]
 
 
-
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
-
-
 ROOT_URLCONF = 'blog.urls'
 
 TEMPLATES = [
@@ -141,6 +137,8 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
+
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media")
