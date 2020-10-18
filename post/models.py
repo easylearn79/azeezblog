@@ -10,6 +10,8 @@ from django.utils import timezone
 from django.contrib.contenttypes.fields import GenericRelation
 from hitcount.models import HitCountMixin, HitCount
 from taggit.managers import TaggableManager
+from cloudinary.models import CloudinaryField
+
 
 # Create your models here.
 
@@ -22,6 +24,7 @@ User = get_user_model()
 class Author(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_picture = models.CharField(max_length=2089)
+    avatar = CloudinaryField('avatar')
     comment_image = models.CharField(max_length=2089)
 
     def __str__(self):
