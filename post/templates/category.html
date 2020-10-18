@@ -1,22 +1,24 @@
 {% extends "base.html" %}
 
 {% block head_title %} {{ category.title }} {% endblock %}
-{% block meta %}<meta name="propeller" content="82d7e68a80e655bb0992f348330d980a">
-  <meta name="title" content="Learnwell | A Blog for all student and non student were learning is made easy">
-  <meta name="description" content="A Blog for Learning, Where Learning is Made Easy for Everyone,Anyone">
+<!-- Primary Meta Tags -->
+<title>Learnwell | A Blog for all student and non student were learning is made easy</title>
+<meta name="title" content="Learnwell | A Blog for all student and non student were learning is made easy">
+<meta name="description" content="A Blog for Learning, Where Learning is Made Easy for Everyone,Anyone">
 
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://learnwell.me/">
-  <meta property="og:title" content="Learnwell | A Blog for all student and non student were learning is made easy">
-  <meta property="og:description" content="A Blog for Learning, Where Learning is Made Easy for Everyone,Anyone">
-  <meta property="og:image" content="{%static 'img/GreenMetaIimage.png' %}">
-  <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:url" content="https://learnwell.me/">
-  <meta property="twitter:title" content="Learnwell | A Blog for all student and non student were learning is made easy">
-  <meta property="twitter:description" content="A Blog for Learning, Where Learning is Made Easy for Everyone,Anyone">
-  <meta property="twitter:image" content="{%static 'img/GreenMetaIimage.png' %}"> {%  endblock meta %}
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://learnwell.me/">
+<meta property="og:title" content="Learnwell | A Blog for all student and non student were learning is made easy">
+<meta property="og:description" content="A Blog for Learning, Where Learning is Made Easy for Everyone,Anyone">
+<meta property="og:image" content="/static/img/GreenMetaIimage.png">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://learnwell.me/">
+<meta property="twitter:title" content="Learnwell | A Blog for all student and non student were learning is made easy">
+<meta property="twitter:description" content="A Blog for Learning, Where Learning is Made Easy for Everyone,Anyone">
+<meta property="twitter:image" content="/static/img/GreenMetaIimage.png">
 {% block content %}
 {%if category.posts.all %}
 <div class="album py-5 bg-light">
