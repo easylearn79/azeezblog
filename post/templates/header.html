@@ -21,21 +21,41 @@
             <!-- Navbar Brand -->
             <div class="navbar-header d-flex align-items-center justify-content-between">
                 <!-- Navbar Brand -->
-                <a href="{% url 'blog' %}" class="navbar-brand"><img src="{%static 'img/abdul.png'%}" width="100" alt=""  class="d-inline-block align-middle mr-2"></a>
+                <a href="{% url 'blog' %}" class="navbar-brand"><img src="{% static 'img/abdul.png'%}" width="150" alt="" class="d-inline-block align-middle mr-2"></a>
                 <!-- Toggle Button-->
                 <button type="button" data-toggle="collapse" data-target="#navbarcollapse"
-                        aria-controls="navbarcollapse" aria-expanded="false" aria-label="Toggle navigation"
-                        class="navbar-toggler"><span></span><span></span><span></span></button>
+                    aria-controls="navbarcollapse" aria-expanded="false" aria-label="Toggle navigation"
+                    class="navbar-toggler"><span></span><span></span><span></span></button>
             </div>
             <!-- Navbar Menu -->
             <div id="navbarcollapse" class="collapse navbar-collapse">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a href="{% url 'blog' %}" class="nav-link active ">How to</a>
                     </li>
-                    <li class="nav-item"><a href="{% url 'index' %}" class="nav-link ">Django & Python</a>
+                    <!-- Category Menu Code -->
+                    {% if cat_menu %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Categories
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            {% for item in cat_menu %}
+                            <a class="dropdown-item" style="color: green;"
+                                href="{% url 'category' item|slugify %}">{{ item }}</a>
+                            {% endfor %}
+                        </div>
                     </li>
+                    {% else %}
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'category-list' %}">Categories</a>
+                    </li>
+
+                    {% endif %}
                 </ul>
-                <div class="navbar-text"><a href="{% url 'post_search' %}" class="search-btn"><i class="icon-search-1"></i></a></div>                
+                <div class="navbar-text"><a href="{% url 'post_search' %}" class="search-btn"><i
+                            class="icon-search-1"></i></a></div>
             </div>
         </div>
     </nav>

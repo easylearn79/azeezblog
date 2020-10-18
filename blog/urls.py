@@ -17,32 +17,30 @@ from django.conf import settings
 from django.contrib import admin
 from django.conf.urls.static import static
 from django.urls import path, include
-from post.views import PostListView,post_search,  post_detail, tagged
-from course.views import CourseListView,CourseDetailView,tagged
+from post.views import PostListView,post_search,  post_detail, tagged,CategoryView, CategoryListView  #CategoryListView
 from django.contrib.sitemaps.views import sitemap
-from .sitemaps import PostSitemap,CourseSitemap
+from .sitemaps import PostSitemap
 from django.conf.urls import url
 from .feeds import LatestPostsFeed
 
 sitemaps = {
      "posts": PostSitemap,
-     "courses":CourseSitemap
 }
 urlpatterns = [
     path('grappelli/', include('grappelli.urls')), # grappelli URLS
     path('admin/', admin.site.urls),
     path('tinymce/', include('tinymce.urls')),
     path('', PostListView.as_view(), name='blog'),
-    path('django/', CourseListView.as_view(), name='index'),
     path('search/', post_search, name='post_search'),
     path('<slug:post>/', post_detail, name='post_detail'),
     #path('django/<int:pk>', CourseDetailView.as_view(), name='course_detail'),
-    path("django/<slug:slug>", CourseDetailView.as_view(), name='course_detail'),
     path("sitemap.xml/", sitemap, {"sitemaps": sitemaps}, name="django.contrib.sitemaps.views.sitemap"),
     path("feed/rss", LatestPostsFeed(), name="post_feed"),
     path('hitcount/', include(('hitcount.urls', 'hitcount'), namespace='hitcount')),
     path('tag/<slug:slug>/', tagged, name="tagged"),
-    path('tag/<slug:slug>/', tagged, name="tagged"),
+    path('category/<slug:slug>/', CategoryView, name='category'),
+    path('category-list/', CategoryListView.as_view(), name='category-list'),
+
 
     
     

@@ -8,10 +8,10 @@ from mptt.models import MPTTModel, TreeForeignKey
 from django.db.models.signals import pre_save
 from django.utils import timezone
 from django.contrib.contenttypes.fields import GenericRelation
+from hitcount.models import HitCountMixin, HitCount
 from taggit.managers import TaggableManager
 
 # Create your models here.
-
 
 
 STATUS = ((0, "Draft"), (1, "Publish"))
@@ -19,13 +19,25 @@ STATUS = ((0, "Draft"), (1, "Publish"))
 User = get_user_model()
 
 
-
 class Author(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_picture = models.CharField(max_length=2089)
+    comment_image = models.CharField(max_length=2089)
 
     def __str__(self):
         return self.user.username
+
+
+class Category(models.Model):
+    title = models.CharField(max_length=50, unique=True)
+    slug = models.SlugField(max_length=250, blank=True)
+
+    class Meta:
+        verbose_name_plural = 'Categories'
+
+    def __str__(self):
+        return self.title
+
 
 class Post(models.Model):
     class NewManager(models.Manager):
@@ -41,8 +53,10 @@ class Post(models.Model):
     overview = models.TextField()
     publish = models.DateTimeField(auto_now_add=True)
     slug = models.SlugField(max_length=250, blank=True, unique_for_date='publish')
+    hit_count_generic = GenericRelation(HitCount, object_id_field='object_pk', related_query_name='hit_count_generic_relation')
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
-    image_url =models.CharField(max_length=2089, null=True)
+    image_url = models.CharField(max_length=2089, null=True)
+    category = models.ForeignKey(Category, related_name='posts', on_delete=models.PROTECT, default='uncategorized', blank=True)
     content = HTMLField('content')
     previous_post = models.ForeignKey(
         'self', related_name='previous', on_delete=models.SET_NULL, blank=True, null=True)
@@ -51,20 +65,14 @@ class Post(models.Model):
     status = models.CharField(max_length=10, choices=options, default='draft')
     tags = TaggableManager()
     objects = models.Manager()  # default manager
-    newmanager = NewManager() 
-
-
-
-    
-
+    newmanager = NewManager()
     #   comments = GenericRelation(Comment)
+
     def __str__(self):
         return self.title
 
-
     def get_absolute_url(self):
         return reverse("post_detail", args=[self.slug])
-
 
     @property
     def comment_count(self):
@@ -80,10 +88,11 @@ def slug_generator(sender, instance, *args, **kwargs):
 pre_save.connect(slug_generator, sender=Post)
 
 
-        
 class Comment(MPTTModel):
-    parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
-    post = models.ForeignKey(Post,on_delete=models.CASCADE,related_name='comments')
+    parent = TreeForeignKey('self', on_delete=models.CASCADE,
+                            null=True, blank=True, related_name='children')
+    post = models.ForeignKey(
+        Post, on_delete=models.CASCADE, related_name='comments')
     name = models.CharField(max_length=80)
     email = models.EmailField()
     content = models.TextField()

@@ -30,7 +30,6 @@ ALLOWED_HOSTS = ['127.0.0.1', 'abdulappblog.herokuapp.com', 'learnwell.me', 'www
 # Application definition
 
 INSTALLED_APPS = [
-    'course',
     'post',
     'tinymce',
     'sorl.thumbnail',
