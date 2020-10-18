@@ -1,4 +1,5 @@
 {% extends 'base.html' %} {% load crispy_forms_tags %}
+{% load cloudinary %}  
 {% block head_title %} {{ post.title }} {% endblock %}
 
 {% block content %}
@@ -53,6 +54,7 @@
                                 {% recursetree comments %}
                                 <div id="{{ node.id }}" class="comments" style='padding: 10px; color:blue;'>
                                     <p class="font-weight-bold" style="color: black;"><img src="{{post.author.comment_image}}" alt="Avatar">
+                                        
                                         {{ node.name }}
                                         <span class=" text-muted font-weight-normal text-info" style="padding-left: 25px;">
                                             {{ node.publish }}
