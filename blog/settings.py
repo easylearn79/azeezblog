@@ -156,9 +156,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 cloudinary.config( 
-  cloud_name =  os.environ.get("hobxavl6p"),
-  api_key =  os.environ.get("865525918786114"), 
-  api_secret =  os.environ.get("NJZzAcu0k5q2rDYDIpg6ysfGn5Q")
+  cloud_name =  "hobxavl6p",
+  api_key =  '865525918786114',
+  api_secret =  "NJZzAcu0k5q2rDYDIpg6ysfGn5Q"
 )
 
 #VENV_PATH = os.path.dirname(BASE_DIR)

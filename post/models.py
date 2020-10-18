@@ -24,6 +24,9 @@ User = get_user_model()
 class Photo(models.Model):
   image = CloudinaryField('image')
 
+  
+  
+
 
 
 
