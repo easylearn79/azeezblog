@@ -1,12 +1,33 @@
 from django.shortcuts import render
 from django.shortcuts import HttpResponseRedirect
-from .models import Post, User, Category
+from .models import Post, User, Category,Photo
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import ListView, DetailView
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from .forms import NewCommentForm, PostSearchForm
 from django.db.models import Q
 from taggit.models import Tag
+from cloudinary.forms import cl_init_js_callbacks      
+from .forms import PhotoForm
+
+def upload(request):
+  context = dict( backend_form = PhotoForm())
+
+  if request.method == 'POST':
+    form = PhotoForm(request.POST, request.FILES)
+    context['posted'] = form.instance
+    if form.is_valid():
+        form.save()
+
+  return render(request, 'upload.html', context)
+
+
+
+
+
+
+
+
 
 
 class PostListView(ListView):

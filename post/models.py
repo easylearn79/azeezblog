@@ -21,10 +21,17 @@ STATUS = ((0, "Draft"), (1, "Publish"))
 User = get_user_model()
 
 
+class Photo(models.Model):
+  image = CloudinaryField('image')
+
+
+
+
+
+
 class Author(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_picture = models.CharField(max_length=2089)
-    avatar = CloudinaryField('avatar')
     comment_image = models.CharField(max_length=2089)
 
     def __str__(self):

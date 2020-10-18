@@ -2,21 +2,14 @@ from django import forms
 from tinymce import TinyMCE
 from .models import Post, Comment,Author
 from mptt.forms import TreeNodeChoiceField
-from cloudinary.forms import CloudinaryFileField
+from django.forms import ModelForm   
 
+from .models import Photo
 
-class AvatarUploadForm(forms.ModelForm):
-    avatar = CloudinaryFileField(
-        options = {
-            'crop': 'thumb',
-            'width': 200,
-            'height': 200,
-            'folder': 'avatars'
-       }
-    )
-    class Meta:
-        model = Author
-        fields = ('avatar',)
+class PhotoForm(ModelForm):
+  class Meta:
+      model = Photo
+      fields = '__all__'
 
 
 
