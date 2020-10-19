@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{%block content %}
+
+<div class="container text-center" style="padding-top: 25px;padding-bottom: 25px;">
+    <div class="content-404">
+        <img src="{% static 'img/404.png'%}" width="400" class="img-responsive" alt="Cap 404" />
+        <h1><b>OPPS!</b> We Couldn’t Find this Page</h1>
+        <p>Uh... So it looks like you brock something. The page you are looking for has up and Vanished.</p>
+        <h2><a href="{% url 'blog' %}"><button class="btn btn-primary bg-info"> Bring me back Home</button></a></h2>
+    </div>
+</div>
+
+{%endblock content %}

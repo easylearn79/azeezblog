@@ -1,37 +1,41 @@
-{% load static %}
+{% load cloudinary %} 
 <!DOCTYPE html>
 <html lang="en">
-  <title>{% block head_title %}LEARNWELL {%  endblock head_title %}</title>
-        {% block head_extra %}{% endblock %}
-  {% block meta %}<meta name="propeller" content="82d7e68a80e655bb0992f348330d980a">
-  <meta name="title" content="Learnwell | A Blog for all student and non student were learning is made easy">
-  <meta name="description" content="A Blog for Learning, Where Learning is Made Easy for Everyone,Anyone">
+<title>{% block head_title %}LEARNWELL {%  endblock head_title %}</title>
+{% block head_extra %}{% endblock %}
+{% block meta %}
+<meta name="propeller" content="82d7e68a80e655bb0992f348330d980a">
+<meta name="title" content="Learnwell | A Blog for all student and non student were learning is made easy">
+<meta name="description" content="A Blog for Learning, Where Learning is Made Easy for Everyone,Anyone">
 
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://learnwell.me/">
-  <meta property="og:title" content="Learnwell | A Blog for all student and non student were learning is made easy">
-  <meta property="og:description" content="A Blog for Learning, Where Learning is Made Easy for Everyone,Anyone">
-  <meta property="og:image" content="{%static 'img/GreenMetaIimage.png' %}">
-  <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:url" content="https://learnwell.me/">
-  <meta property="twitter:title" content="Learnwell | A Blog for all student and non student were learning is made easy">
-  <meta property="twitter:description" content="A Blog for Learning, Where Learning is Made Easy for Everyone,Anyone">
-  <meta property="twitter:image" content="{%static 'img/GreenMetaIimage.png' %}"> {%  endblock meta %}
-  {% include 'head.html'%}
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://learnwell.me/">
+<meta property="og:title" content="Learnwell | A Blog for all student and non student were learning is made easy">
+<meta property="og:description" content="A Blog for Learning, Where Learning is Made Easy for Everyone,Anyone">
+<meta property="twitter:image" content="https://res.cloudinary.com/hobxavl6p/image/upload/v1603011391/vwlkveaoopxuvyjfpcc9.png">
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://learnwell.me/">
+<meta property="twitter:title" content="Learnwell | A Blog for all student and non student were learning is made easy">
+<meta property="twitter:description" content="A Blog for Learning, Where Learning is Made Easy for Everyone,Anyone">
+<meta property="twitter:image" content="https://res.cloudinary.com/hobxavl6p/image/upload/v1603011391/vwlkveaoopxuvyjfpcc9.png">
+{%  endblock meta %}
+{% include 'head.html'%}
+
 <body>
   <main>
     {% include "header.html"%}
     <div class="p-2 bg-transparent">
-    
+
     </div>
     {%block content %}
-    
+
 
     {%endblock content %}
-  </main> 
-    {% include 'footer.html' %}
-    {% include 'script.html' %}
+  </main>
+  {% include 'footer.html' %}
+  {% include 'script.html' %}
 </body>
+
 </html>

@@ -133,8 +133,10 @@ class CategoryListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        cat_menu = Category.objects.all()
         cat_menu_list = Category.objects.all()
         context["cat_menu_list"] = cat_menu_list
+        context["cat_menu"] = cat_menu
         return context
     
     
@@ -142,10 +144,10 @@ class CategoryListView(ListView):
 
 def CategoryView(request, slug):
     cat_menu = Category.objects.all()
-    category = Category.objects.get(slug=slug)
+    category = get_object_or_404(Category, slug=slug)
     context = {
         'category': category,
-        'cat_menu': cat_menu
-    }
+        'cat_menu':cat_menu
+            }
     return render(request, 'category.html', context)
 

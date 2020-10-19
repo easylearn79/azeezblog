@@ -6,9 +6,9 @@ from django.utils.feedgenerator import Atom1Feed
 
 
 class LatestPostsFeed(Feed):
-    title = 'Abdul Blog'
+    title = 'Learnwell'
     link = ''
-    description = 'New posts of Abdul Blog'
+    description = 'New posts of Learnwell'
 
 
     def items(self):
