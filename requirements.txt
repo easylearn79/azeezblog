@@ -52,4 +52,4 @@ importlib-resources==3.0.0
 whitenoise
 django-grappelli==2.14.2
 cloudinary
-python-dotenv
+django-dotenv==1.4.2

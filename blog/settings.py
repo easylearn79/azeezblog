@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'mce_filebrowser',
     'crispy_forms',
     'hitcount',
-    #'django.contrib.sites',
+    'django.contrib.sites',
+    'django.contrib.redirects',
     'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -75,6 +76,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.redirects.middleware.RedirectFallbackMiddleware',
 ]
 
 

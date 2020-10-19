@@ -145,9 +145,11 @@ class CategoryListView(ListView):
 def CategoryView(request, slug):
     cat_menu = Category.objects.all()
     category = get_object_or_404(Category, slug=slug)
+    posts = Post.objects.filter(category=category)
     context = {
         'category': category,
-        'cat_menu':cat_menu
+        'cat_menu':cat_menu,
+        'posts':posts
             }
     return render(request, 'category.html', context)
 

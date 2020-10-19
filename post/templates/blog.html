@@ -89,7 +89,7 @@
                     </div>
                 </form>
             </div>
-            <!-- Widget [Latest Posts Widget]        -->
+            <!-- Widget [Latest Posts Widget] -->
             <div class="widget latest-posts">
                 <header>
                     <h4 class="h6">Latest Posts</h4>
@@ -109,6 +109,18 @@
                     {%endfor%}
                 </div>
             </div>
+            <!-- Widget [categories Widget] -->
+            <div class="widget categories">
+                <Header>
+                    <h3 class="h6">Category</h3>
+                </Header>
+                {%for cat in cat_menu%}
+                <div class="item d-flex justify-content-between"">
+                    <a href="{% url 'category' cat.slug%}">{{cat}}</a>
+                </div>
+                {%endfor%}
+            </div>
+            <!-- Widget [tag Widget] -->
             <div class="widget tags">
                 <header>
                     <h3 class="h6">Tags</h3>
