@@ -81,6 +81,17 @@ class Post(models.Model):
     newmanager = NewManager()
     #   comments = GenericRelation(Comment)
 
+
+    _metadata = {
+        'title': 'title',
+        'description': 'content',
+        'image_url': 'get_meta_image'
+    }
+
+    def get_meta_image(self):
+        if self.image_url:
+            return self.image_url.url
+
     def __str__(self):
         return self.title
 

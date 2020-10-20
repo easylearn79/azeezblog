@@ -93,7 +93,8 @@ def post_detail(request, post):
                                            'comment_form': comment_form,
                                            'common_tags': common_tags,
                                            'most_recent': most_recent,
-                                           'cat_menu': cat_menu})
+                                           'cat_menu': cat_menu,
+                                           'meta': post.as_meta})
 
 
 def post_search(request):

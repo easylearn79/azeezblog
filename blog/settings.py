@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'mptt',
     'taggit',
     'cloudinary',
+    'meta',
 
 ]
 COMMENTS_APP = 'comments'
