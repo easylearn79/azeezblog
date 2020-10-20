@@ -65,6 +65,7 @@ LOGIN_URL = 'login'
 
 CRISPY_TEMPLATE_PACK = 'uni_form'
 META_SITE_PROTOCOL="https"
+META_SITE_DOMAIN = 'learnwell.me', 'www.learnwell.me', 'abdulappblog.herokuapp.com'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
