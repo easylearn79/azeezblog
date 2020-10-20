@@ -1,8 +1,6 @@
 {% extends "base.html" %}
-{% load meta %}
 {% load cloudinary %} 
 {% block head_title %} {{ category.title }} {% endblock %}
-{% include "meta/meta.html" %}
 {% block content %}
 {%if category.posts.all %}
 <div class="album py-5 bg-light">

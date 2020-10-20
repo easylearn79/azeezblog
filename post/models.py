@@ -11,6 +11,7 @@ from django.contrib.contenttypes.fields import GenericRelation
 from hitcount.models import HitCountMixin, HitCount
 from taggit.managers import TaggableManager
 from cloudinary.models import CloudinaryField
+from meta.models import ModelMeta
 
 
 # Create your models here.
@@ -52,7 +53,7 @@ class Category(models.Model):
         return self.title
 
 
-class Post(models.Model):
+class Post(ModelMeta,models.Model):
     class NewManager(models.Manager):
         def get_queryset(self):
             return super().get_queryset().filter(status='published')

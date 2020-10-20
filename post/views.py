@@ -12,7 +12,6 @@ from .forms import PhotoForm
 
 def upload(request):
   context = dict( backend_form = PhotoForm())
-
   if request.method == 'POST':
     form = PhotoForm(request.POST, request.FILES)
     context['posted'] = form.instance
@@ -94,7 +93,7 @@ def post_detail(request, post):
                                            'common_tags': common_tags,
                                            'most_recent': most_recent,
                                            'cat_menu': cat_menu,
-                                           'meta': post.as_meta})
+                                           'meta': post.as_meta })
 
 
 def post_search(request):
