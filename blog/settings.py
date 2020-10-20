@@ -64,7 +64,7 @@ SITE_ID = 1
 LOGIN_URL = 'login'
 
 CRISPY_TEMPLATE_PACK = 'uni_form'
-
+META_SITE_PROTOCOL="https"
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
