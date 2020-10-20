@@ -92,7 +92,7 @@ class Post(ModelMeta,models.Model):
 
     def get_meta_image(self):
         if self.image:
-            return self.image
+            return self.image.url
 
     def __str__(self):
         return self.title
