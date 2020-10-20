@@ -70,7 +70,7 @@ class Post(ModelMeta,models.Model):
     hit_count_generic = GenericRelation(HitCount, object_id_field='object_pk', related_query_name='hit_count_generic_relation')
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     image_url = models.CharField(max_length=2089, null=True)
-    image = models.ImageField()
+    image = CloudinaryField('image')
     category = models.ForeignKey(Category, related_name='posts', on_delete=models.PROTECT, default='uncategorized', blank=True)
     content = HTMLField('content')
     previous_post = models.ForeignKey(
