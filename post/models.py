@@ -81,7 +81,7 @@ class Post(ModelMeta,models.Model):
         'title': 'title',
         'description': 'overview',
         "image_url": "get_meta_image",
-        "keywords": "get_keywords"
+        "keywords": "get_keywords",
        
     }
 
