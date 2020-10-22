@@ -79,13 +79,13 @@ class Post(ModelMeta,models.Model):
     _metadata = {
         'title': 'title',
         'description': 'overview',
-        "image": "get_meta_image",
+        "image_url": "get_meta_image",
        
     }
 
     def get_meta_image(self):
         if self.image:
-            return self.image.url
+            return self.image_url
             
 
     def __str__(self):
