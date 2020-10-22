@@ -35,7 +35,10 @@
                             <p class="text-muted">{{ post.overview|truncatechars:267 }}</p>
                             <footer class="post-footer d-flex align-items-center"><a href="{{ post.get_absolute_url }}"
                                     class="author d-flex align-items-center flex-wrap">
-                                    <div class="avatar"><img src="{{ post.author.profile_picture }}" alt="Author Image"
+                                    <div class="avatar">
+                                        {% load cloudinary %}      
+                                        {% cloudinary photo.image format="jpg" width=120 height=80 crop="fill" %}
+                                        <img src="{{ post.author.profile_picture }}" alt="Author Image"
                                             class="img-fluid"></div>
                                     <div class="title"><span>{{ post.author.user.username }}</span></div>
                                 </a>

@@ -33,7 +33,6 @@ urlpatterns = [
     path('', PostListView.as_view(), name='blog'),
     path('search/', post_search, name='post_search'),
     path('<slug:post>/', post_detail, name='post_detail'),
-    #path('django/<int:pk>', CourseDetailView.as_view(), name='course_detail'),
     path("sitemap.xml/", sitemap, {"sitemaps": sitemaps}, name="django.contrib.sitemaps.views.sitemap"),
     path("feed/rss", LatestPostsFeed(), name="post_feed"),
     path('hitcount/', include(('hitcount.urls', 'hitcount'), namespace='hitcount')),

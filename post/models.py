@@ -69,7 +69,7 @@ class Post(ModelMeta,models.Model):
     slug = models.SlugField(max_length=250, blank=True, unique_for_date='publish')
     hit_count_generic = GenericRelation(HitCount, object_id_field='object_pk', related_query_name='hit_count_generic_relation')
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
-    image_url = models.CharField(max_length=2089, null=True)
+    image_url = models.CharField(max_length=2089, null=True, blank=True)
     image = CloudinaryField('image')
     category = models.ForeignKey(Category, related_name='posts', on_delete=models.PROTECT, default='uncategorized', blank=True)
     content = HTMLField('content')
@@ -87,12 +87,15 @@ class Post(ModelMeta,models.Model):
     _metadata = {
         'title': 'title',
         'description': 'overview',
-        'image': 'get_meta_image'
+        "image": "get_image_full_url",
+        "image_width": "get_image_width",
+        "image_height": "get_image_height",
     }
 
     def get_meta_image(self):
         if self.image:
             return self.image.url
+            
 
     def __str__(self):
         return self.title

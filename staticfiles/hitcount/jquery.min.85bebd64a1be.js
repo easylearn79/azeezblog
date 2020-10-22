@@ -1,0 +1,5 @@
+(function($){$.postCSRF=function(url,data,callback,type){function csrfSafeMethod(method){return(/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));}
+function getCookie(name){var cookieValue=null;if(document.cookie&&document.cookie!==''){var cookies=document.cookie.split(';');for(var i=0;i<cookies.length;i++){var cookie=jQuery.trim(cookies[i]);if(cookie.substring(0,name.length+1)==(name+'=')){cookieValue=decodeURIComponent(cookie.substring(name.length+1));break;}}}
+return cookieValue;}
+var csrftoken=getCookie('csrftoken');if($.isFunction(data)){type=type||callback;callback=data;data=undefined;}
+return $.ajax(jQuery.extend({url:url,type:"POST",dataType:type,data:data,success:callback,beforeSend:function(xhr,settings){if(!csrfSafeMethod(settings.type)&&!this.crossDomain){xhr.setRequestHeader("X-CSRFToken",csrftoken);}}},jQuery.isPlainObject(url)&&url));};}(jQuery));

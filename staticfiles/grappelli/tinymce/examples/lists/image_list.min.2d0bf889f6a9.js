@@ -1,0 +1,1 @@
+var tinyMCEImageList=new Array(["Logo 1","media/logo.jpg"],["Logo 2 Over","media/logo_over.jpg"]);
