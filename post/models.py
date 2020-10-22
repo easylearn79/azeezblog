@@ -25,14 +25,6 @@ User = get_user_model()
 class Photo(models.Model):
   image = CloudinaryField('image')
 
-  
-  
-
-
-
-
-
-
 class Author(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_picture = models.CharField(max_length=2089)
@@ -87,9 +79,8 @@ class Post(ModelMeta,models.Model):
     _metadata = {
         'title': 'title',
         'description': 'overview',
-        "image": "get_image_full_url",
-        "image_width": "get_image_width",
-        "image_height": "get_image_height",
+        "image": "get_meta_image",
+       
     }
 
     def get_meta_image(self):

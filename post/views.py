@@ -41,12 +41,14 @@ class PostListView(ListView):
         photos = Photo.objects.all()
         cat_menu = Category.objects.all()
         context = super(PostListView, self).get_context_data(**kwargs)
+        post= Photo.objects.all()
         most_recent = Post.objects.order_by('-publish')[:4]
         context['most_recent'] = most_recent
         common_tags = Post.tags.most_common()[:4]
         context['common_tags'] = common_tags
         context['cat_menu'] = cat_menu
         context['photos'] = photos
+        context['post'] = post
         return context
 
     # class PostDetailView(DetailView):
