@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.shortcuts import HttpResponseRedirect
-from .models import Post, User, Category,Photo
+from .models import Post, User, Category,Photo,Photo
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import ListView, DetailView
 from django.shortcuts import render, get_object_or_404, redirect, reverse
@@ -38,6 +38,7 @@ class PostListView(ListView):
     count_hit = True
 
     def get_context_data(self, **kwargs):
+        photos = Photo.objects.all()
         cat_menu = Category.objects.all()
         context = super(PostListView, self).get_context_data(**kwargs)
         most_recent = Post.objects.order_by('-publish')[:4]
@@ -45,6 +46,7 @@ class PostListView(ListView):
         common_tags = Post.tags.most_common()[:4]
         context['common_tags'] = common_tags
         context['cat_menu'] = cat_menu
+        context['photos'] = photos
         return context
 
     # class PostDetailView(DetailView):

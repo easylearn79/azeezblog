@@ -1,9 +1,14 @@
 {% load static %}
-{% load cloudinary %} 
+{% load cloudinary %}
 {% load meta %}
+
 <head>
     {%include "meta/meta.html"%}
-        <!-- Primary Meta Tags -->
+    {% for photo in photos %}
+    <meta property="og:image" content="{{ photo.image.url }}">
+    {%endfor%}
+    
+    <!-- Primary Meta Tags -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
