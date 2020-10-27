@@ -63,7 +63,7 @@ class Post(ModelMeta,models.Model):
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     image_url = models.CharField(max_length=2089, null=True, blank=True)
     image = CloudinaryField('image')
-    keywords = models.TextField(verbose_name="Post Meta keywords", blank=True, default="")
+    meta_keywords = models.TextField(verbose_name="Post meta keywords", blank=True, default="")
     category = models.ForeignKey(Category, related_name='posts', on_delete=models.PROTECT, default='uncategorized', blank=True)
     content = HTMLField('content')
     previous_post = models.ForeignKey(
@@ -81,7 +81,7 @@ class Post(ModelMeta,models.Model):
         'title': 'title',
         'description': 'overview',
         "image_url": "get_meta_image",
-        "keywords": "get_keywords",
+        "keywords": "get_keywords"
        
     }
 
@@ -92,7 +92,7 @@ class Post(ModelMeta,models.Model):
 
 
     def get_keywords(self):
-        return self.keywords.strip().split(",")
+        return self.meta_keywords.strip().split(",")
             
 
     def __str__(self):

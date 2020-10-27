@@ -10,6 +10,9 @@ from taggit.models import Tag
 from cloudinary.forms import cl_init_js_callbacks      
 from .forms import PhotoForm
 
+
+
+
 def upload(request):
   context = dict( backend_form = PhotoForm())
   if request.method == 'POST':
@@ -19,13 +22,6 @@ def upload(request):
         form.save()
 
   return render(request, 'upload.html', context)
-
-
-
-
-
-
-
 
 
 
@@ -55,7 +51,7 @@ class PostListView(ListView):
     # model = Post
     # template_name = 'post_detail.html'
     # context_object_name = 'post'
-
+    
 
 
 

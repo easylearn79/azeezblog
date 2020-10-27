@@ -163,7 +163,6 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-
 cloudinary.config( 
   cloud_name =  "hobxavl6p",
   api_key =  '865525918786114',
@@ -195,11 +194,11 @@ TINYMCE_DEFAULT_CONFIG = {
             fullscreen preview bold italic underline | fontselect,
             fontsizeselect  | forecolor backcolor | alignleft alignright |
             aligncenter alignjustify | indent outdent | bullist numlist table |
-            | link image media | codesample |
+            | link image media | codesample |full
             ''',
     'toolbar2': '''
             visualblocks visualchars |
-            charmap hr pagebreak nonbreaking anchor |  code |
+            charmap hr pagebreak nonbreaking anchor |  code |full
             ''',
     'contextmenu': 'formats | link image',
     'menubar': True,
